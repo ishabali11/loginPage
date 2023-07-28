@@ -15,33 +15,49 @@ public class LoginService {
     private LoginRepo loginRepo;
 
 
-    public LoginResponse details( LoginReq loginReq) {
+    public String details(String username, String password) {
+
         LoginResponse loginResponse = new LoginResponse();
         // LoginReq loginReq1 = new LoginReq();
-     String username1 = loginReq.username;
-        String password1 = loginReq.password;
+        // String username1 = loginReq.username;
+        //  String password1 = loginReq.password;
 
-        Logintable logintable = loginRepo.findByUsername(username1);
-       // Logintable logintable = LoginRepo.findByPassword(password1);
+        //String username ;
+        Logintable logintable = loginRepo.findByUsername(username);
+        // Logintable logintable = LoginRepo.findByPassword(password1);
+        // Logintable logintable = new Logintable();
 
-
-       // Logintable logintable = new Logintable();
-
-
-        if (logintable.getUsername().equals(username1)) {
-            if (logintable.getPassword().equals(password1)) {
+        if (logintable.getUsername().equals(username)) {
+            if (logintable.getPassword().equals(password)) {
                 loginResponse.message = "Login Successful";
+                return "Succesful";
 
             } else {
                 loginResponse.message = "Login failed, invalid password";
+                return "Unsucessful";
 
             }
         } else {
             loginResponse.message = "Login failed, invalid username";
+            //   return "Unsucessful";
 
         }
-        return loginResponse;
+        return "a";
     }
+
+    public String create(String username, String password) {
+        Logintable logintable = new Logintable();
+
+        logintable.setUsername(username);
+        // logintable.setEmail(email);
+        logintable.setPassword(password);
+
+        loginRepo.save(logintable);
+        return "LoginPage";
+
+
+    }
+
 
 
         }

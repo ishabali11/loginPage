@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
     @Repository
     public  interface LoginRepo extends JpaRepository<Logintable,String>
     {
-       @Query//(value="select * from Logintable",nativeQuery=true)
+       @Query
 
 
        Logintable   findByUsername(@Param(" username") String username);
 
+
+
        // Logintable   findById(@Param("") int Id);
-
-
-
 
     }
 
